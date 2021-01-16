@@ -2,7 +2,6 @@ package frc.team3324.robot
 
 import edu.wpi.first.wpilibj.livewindow.LiveWindow
 import edu.wpi.first.wpilibj2.command.CommandScheduler
-import com.cuforge.libcu.Lasershark
 import edu.wpi.first.cameraserver.CameraServer
 import edu.wpi.first.wpilibj.*
 import io.github.oblarg.oblog.Logger
@@ -10,9 +9,6 @@ import io.github.oblarg.oblog.Logger
 class Robot: TimedRobot() {
 
     private val compressor = Compressor()
-    private val lidar = Lasershark(2)
-    private val rangeMeters: Double
-        get() = lidar.distanceMeters
     private val ultrasonic = AnalogInput(1)
     private val depRangeInches: Double
         get() = ultrasonic.value.toDouble() * 0.125

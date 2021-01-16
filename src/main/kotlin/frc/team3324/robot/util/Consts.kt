@@ -70,7 +70,7 @@ object Consts {
     }
 
     object Intake {
-        val MOTOR = MetroTalonSRX(20, 10)
+        val MOTOR = MetroTalonSRX(26, 10)
     }
 
     object Pivot {
