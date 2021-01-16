@@ -35,10 +35,6 @@ class Robot: TimedRobot() {
         Logger.updateEntries()
     }
 
-    override fun autonomousInit() {
-        CommandScheduler.getInstance().schedule(robotContainer.getAutoCommand())
-        enabledInit()
-    }
     override fun teleopInit() {
         enabledInit()
     }
