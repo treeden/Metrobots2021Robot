@@ -2,6 +2,7 @@ package frc.team3324.robot.util
 
 import com.revrobotics.CANSparkMaxLowLevel
 import edu.wpi.first.wpilibj.DoubleSolenoid
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics
 import frc.team3324.library.motorcontrollers.MetroSparkMAX
 import frc.team3324.library.motorcontrollers.MetroTalonSRX
 
@@ -18,7 +19,7 @@ object Consts {
         // Encoder and Auto constants
         const val HIGH_GEAR_RATIO = 1.0 / (108800 / 12000)
         const val LOW_GEAR_RATIO = 1.0 / (160000 / 8160)
-        const val WHEEL_DIAMETER_METERS = 6.00 / 39.36
+        const val WHEEL_DIAMETER_METERS = 6.125 / 39.36
         const val CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER_METERS
         const val PULSES = 1870 // 256 (pulses) * 4(quad, 4 ticks/pulse) * 3 * 25 (gear ratios)
         const val TICKS = PULSES * 4
@@ -26,18 +27,25 @@ object Consts {
         const val DISTANCE_PER_PULSE_LOW = CIRCUMFERENCE * LOW_GEAR_RATIO
         const val DISTANCE_BETWEEN_WHEELS = 0.61
 
-        const val ksVolts = 0.181
-        const val LOW_GEAR_KV = 4.9
-        const val HIGH_GEAR_KV = 2.28
-        const val LOW_GEAR_KA = 0.36
-        const val kaVoltSecondsSquaredPerMeter = 0.302
+        // feedforward gains
+        const val ksVolts = 0.126 // volts
+        const val LOW_GEAR_KV = 5.03 // volts * seconds / meters
+        const val LOW_GEAR_KA = 0.302 // volts * seconds^2 / meters
+
+        const val kTrackwidthMeters = 1.4036
+
         const val kRamseteB = 2.0
         const val kRamseteZeta = 0.7
 
-        const val HIGH_GEAR_MAX_VELOCITY = 12.0 / HIGH_GEAR_KV
+        val kDriveKinematics = DifferentialDriveKinematics(kTrackwidthMeters)
+
+        // feedback gains
+        const val kP = 11.4
+        const val kD = 0.0
+
         const val HIGH_GEAR_MAX_ACCELERATION = 2.00
         const val LOW_GEAR_MAX_VELOCITY = 12.0 / LOW_GEAR_KV
-        const val LOW_GEAR_MAX_ACCELERATION = 6.51
+        const val LOW_GEAR_MAX_ACCELERATION = 12.0 / LOW_GEAR_KA
 
 
         const val GEARSHIFTER_FORWARD = 6

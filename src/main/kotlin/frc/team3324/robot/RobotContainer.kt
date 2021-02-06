@@ -4,6 +4,7 @@ import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.*
 import edu.wpi.first.wpilibj.XboxController.Button
 import edu.wpi.first.wpilibj.controller.PIDController
+import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile
 import edu.wpi.first.wpilibj2.command.Command
 import edu.wpi.first.wpilibj2.command.PIDCommand
 import edu.wpi.first.wpilibj2.command.button.JoystickButton
@@ -15,6 +16,7 @@ import frc.team3324.robot.util.Camera
 import frc.team3324.robot.util.Consts
 import frc.team3324.library.commands.ToggleLightCommand
 import frc.team3324.library.subsystems.MotorSubsystem
+import frc.team3324.robot.drivetrain.commands.auto.MeterForward
 import io.github.oblarg.oblog.Logger
 
 class RobotContainer {
@@ -56,23 +58,25 @@ class RobotContainer {
        Logger.configureLoggingAndConfig(this, true)
        driveTrain.defaultCommand = Drive(driveTrain, {primaryController.getY(GenericHID.Hand.kLeft)}, {primaryController.getX(GenericHID.Hand.kRight)})
 
-
        configureButtonBindings()
 
    }
 
     private fun configureButtonBindings() {
+        JoystickButton(primaryController, Button.kA.value).whenPressed(MeterForward(driveTrain, TrapezoidProfile.State(6.0, 0.0)))
         /*JoystickButton(primaryController, Button.kY.value).whileHeld(GyroTurn(
                 driveTrain,
                 1.0/70.0,
                 (Consts.DriveTrain.ksVolts + 0.3)/12,
                 {cameraTable.getEntry("targetYaw").getDouble(0.0)},
-                {input -> driveTrain.curvatureDrive(0.0, input, true)}
+                   {input -> driveTrain.curvatureDrive(0.0, input, true)}
         ))*/
 
     }
 
+
     fun rumbleController(rumbleLevel: Double) {
+
         secondaryController.setRumble(GenericHID.RumbleType.kRightRumble, rumbleLevel)
     }
 

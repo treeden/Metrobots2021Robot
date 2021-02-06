@@ -109,7 +109,7 @@ class DriveTrain: SubsystemBase(), Loggable {
         get() = drive.isSafetyEnabled
         set(bool) = drive.setSafetyEnabled(bool)
 
-    private val drive = DifferentialDrive(rmMotor, lmMotor)
+    val drive = DifferentialDrive(rmMotor, lmMotor)
 
     val diffDriveOdometry = DifferentialDriveOdometry(Rotation2d.fromDegrees(-gyro.yaw.toDouble()))
 
