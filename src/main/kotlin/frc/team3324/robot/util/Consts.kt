@@ -1,6 +1,7 @@
 package frc.team3324.robot.util
 
 import com.revrobotics.CANSparkMaxLowLevel
+import edu.wpi.first.wpilibj.DigitalInput
 import edu.wpi.first.wpilibj.DoubleSolenoid
 import frc.team3324.library.motorcontrollers.MetroSparkMAX
 import frc.team3324.library.motorcontrollers.MetroTalonSRX
@@ -74,6 +75,9 @@ object Consts {
     }
 
     object Pivot {
+        val UPPER_LIMIT_SWITCH = DigitalInput(0)
+        val LOWER_LIMIT_SWITCH = DigitalInput(1)
+
         val MOTOR = MetroSparkMAX(8, CANSparkMaxLowLevel.MotorType.kBrushless, 30)
     }
 }
